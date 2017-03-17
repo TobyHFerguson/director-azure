@@ -29,7 +29,7 @@ create external table if not exists store_sales
     ss_net_profit             float
 )
 stored as parquet
-location 'REPLACE_ME_ADLS_GLOBAL_STORE/datasets/tpcds/nonpartitioned/parq/scale_1/store_sales';
+location 'REPLACE_ME_ADLS_URI/datasets/tpcds/nonpartitioned/parq/scale_1/store_sales';
 
 create external table if not exists customer_demographics
 (
@@ -44,7 +44,7 @@ create external table if not exists customer_demographics
     cd_dep_college_count      int
 )
 stored as parquet
-location 'REPLACE_ME_ADLS_GLOBAL_STORE/datasets/tpcds/nonpartitioned/parq/scale_1/customer_demographics';
+location 'REPLACE_ME_ADLS_URI/datasets/tpcds/nonpartitioned/parq/scale_1/customer_demographics';
 
 create external table if not exists  date_dim
 (
@@ -78,7 +78,7 @@ create external table if not exists  date_dim
     d_current_year            string
 )
 stored as parquet
-location 'REPLACE_ME_ADLS_GLOBAL_STORE/datasets/tpcds/nonpartitioned/parq/scale_1/date_dim';
+location 'REPLACE_ME_ADLS_URI/datasets/tpcds/nonpartitioned/parq/scale_1/date_dim';
 
 create external table if not exists time_dim
 (
@@ -94,7 +94,7 @@ create external table if not exists time_dim
     t_meal_time               string
 )
 stored as parquet
-location 'REPLACE_ME_ADLS_GLOBAL_STORE/datasets/tpcds/nonpartitioned/parq/scale_1/time_dim';
+location 'REPLACE_ME_ADLS_URI/datasets/tpcds/nonpartitioned/parq/scale_1/time_dim';
 
 create external table if not exists  item
 (
@@ -122,7 +122,7 @@ create external table if not exists  item
     i_product_name            string
 )
 stored as parquet
-location 'REPLACE_ME_ADLS_GLOBAL_STORE/datasets/tpcds/nonpartitioned/parq/scale_1/item';
+location 'REPLACE_ME_ADLS_URI/datasets/tpcds/nonpartitioned/parq/scale_1/item';
 
 create external table if not exists  store
 (
@@ -157,7 +157,7 @@ create external table if not exists  store
     s_tax_precentage          float
 )
 stored as parquet
-location 'REPLACE_ME_ADLS_GLOBAL_STORE/datasets/tpcds/nonpartitioned/parq/scale_1/store';
+location 'REPLACE_ME_ADLS_URI/datasets/tpcds/nonpartitioned/parq/scale_1/store';
 
 create external table if not exists  customer
 (
@@ -181,7 +181,7 @@ create external table if not exists  customer
     c_last_review_date        string
 )
 stored as parquet
-location 'REPLACE_ME_ADLS_GLOBAL_STORE/datasets/tpcds/nonpartitioned/parq/scale_1/customer';
+location 'REPLACE_ME_ADLS_URI/datasets/tpcds/nonpartitioned/parq/scale_1/customer';
 
 create external table if not exists  promotion
 (
@@ -206,7 +206,7 @@ create external table if not exists  promotion
     p_discount_active         string
 )
 stored as parquet
-location 'REPLACE_ME_ADLS_GLOBAL_STORE/datasets/tpcds/nonpartitioned/parq/scale_1/promotion';
+location 'REPLACE_ME_ADLS_URI/datasets/tpcds/nonpartitioned/parq/scale_1/promotion';
 
 create external table if not exists  household_demographics
 (
@@ -217,7 +217,7 @@ create external table if not exists  household_demographics
     hd_vehicle_count          int
 )
 stored as parquet
-location 'REPLACE_ME_ADLS_GLOBAL_STORE/datasets/tpcds/nonpartitioned/parq/scale_1/household_demographics';
+location 'REPLACE_ME_ADLS_URI/datasets/tpcds/nonpartitioned/parq/scale_1/household_demographics';
 
 create external table if not exists  customer_address
 (
@@ -236,9 +236,9 @@ create external table if not exists  customer_address
     ca_location_type          string
 )
 stored as parquet
-location 'REPLACE_ME_ADLS_GLOBAL_STORE/datasets/tpcds/nonpartitioned/parq/scale_1/customer_address';
+location 'REPLACE_ME_ADLS_URI/datasets/tpcds/nonpartitioned/parq/scale_1/customer_address';
 
-INSERT OVERWRITE DIRECTORY 'REPLACE_ME_ADLS_MY_STORE/REPLACE_ME_OWNER/output/'
+INSERT OVERWRITE DIRECTORY 'REPLACE_ME_ADLS_URI/REPLACE_ME_OWNER/output/'
 select  dt.d_year 
        ,item.i_brand_id brand_id 
        ,item.i_brand brand

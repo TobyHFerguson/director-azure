@@ -36,11 +36,11 @@ RANDOM_TOKEN=$(uuidgen | tr -d '-' | fold -w 12 | head -n 1)
 #
 
 DIRECTOR_SERVER="http://localhost:7189"
-DIRECTOR_USER=toby
-DIRECTOR_PASSWORD=Cloudera1!
+DIRECTOR_USER=REPLACE_ME_DIRECTOR_USER
+DIRECTOR_PASSWORD=REPLACE_ME_DIRECTOR_PASSWORD
 
 #REPLACE_ME
-SSH_USERNAME=REPLACE_ME_OWNER
+SSH_USERNAME=centos
 SSH_PRIVATE_KEY="~/.ssh/id_rsa"
 
 #
@@ -289,7 +289,7 @@ if [[ "${SUBMIT_JOB}" == "true" ]]; then
     SCP="scp -o StrictHostKeyChecking=no -i ${SSH_PRIVATE_KEY}"
 
     JOB_DIR="/tmp/${JOB_ID}"
-    ${SSH} mkdir ${JOB_DIR}
+    ${SSH} mkdir -p ${JOB_DIR}
 
     for PART in "$@"
     do

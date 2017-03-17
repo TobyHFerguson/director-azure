@@ -1,7 +1,8 @@
 ADLS_CLIENT_ID="156f2d61-9e8b-4864-81a8-428f03b521da"
-ADLS_GLOBAL_STORE=adl://cl2.azuredatalakestore.net
-ADLS_MY_STORE=adl://cl2.azuredatalakestore.net
+ADLS_URI=adl://cl2.azuredatalakestore.net
 CLIENT_ID="09c00b64-ca87-48a9-a401-56d0215cd661"
+DIRECTOR_USER=toby
+DIRECTOR_PASSWORD=Cloudera1!
 OWNER=toby
 REGION=westus
 SSH_KEYFILE=~/.ssh/toby-azure

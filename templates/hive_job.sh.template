@@ -17,8 +17,8 @@
 
 set -x -e
 
-sudo -u hdfs hadoop fs -mkdir /user/REPLACE_ME_OWNER
-sudo -u hdfs hadoop fs -chown REPLACE_ME_OWNER:REPLACE_ME_OWNER /user/REPLACE_ME_OWNER
-hive -f query.sql
+sudo -u hdfs hadoop fs -mkdir -p /user/centos
+sudo -u hdfs hadoop fs -chown centos:centos /user/centos
+hive -f adls_query.sql
 
 exit 0

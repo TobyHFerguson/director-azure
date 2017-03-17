@@ -575,8 +575,8 @@ cluster {
     }
 
 
-# This repository is for the alpha ADLS bits
-    parcelRepositories: ["http://bits.cloudera.com/81de1d85/"]
+    parcelRepositories: ["http://archive.cloudera.com/cdh5/parcels/5.10/"]
+
 
     services: [HDFS, YARN, HIVE, SPARK_ON_YARN, OOZIE, IMPALA, HUE]
 
