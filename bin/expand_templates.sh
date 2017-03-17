@@ -15,6 +15,8 @@ exit 1
 . secrets
 
 mkdir -p ./tmp
+mkdir -p ./output
+trap 'rm -rf ./tmp' EXIT
 SSH_PRIVATE_KEY_FILE=./tmp/pk.$$
 SED_COMMANDS_FILE=./tmp/cmds.sed.$$
 SCRIPTPATH=$( cd $(dirname $0) ; pwd -P )
@@ -43,8 +45,16 @@ EOF
 
 for t in $(ls ${TEMPLATE_DIR:?}/*.template)
 do
-    file=$(basename $t .template)
+    file=output/$(basename $t .template)
     sed -f ${SED_COMMANDS_FILE} $t >$file
 done
+
+cat >output/install_jq.sh <<EOF
+(cd /tmp
+curl -O http://stedolan.github.io/jq/download/linux64/jq
+chmod +x ./jq
+sudo mv jq /usr/bin
+)
+EOF
 
     

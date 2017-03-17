@@ -1,6 +1,4 @@
 **/tmp/**
 tmp/**
 secrets
-tests/*.sql
-tests/*.sh
-tests/*.conf
+tests/output
