@@ -30,7 +30,7 @@ name: Azure-ETL-Cluster
 environmentName: Azure-nonHA
 deploymentName: Cloudera-Manager-on-Azure
 
-# The owner is used to tag the instances, as well as setup hdfs storage
+# The owner is used to tag the instances and name the adls storage output
 OWNER: "REPLACE_ME_OWNER"
 
 #
@@ -103,14 +103,14 @@ common-instanceTemplate {
     	availabilitySet: "asedge"
         type: STANDARD_DS12_V2
         image: cloudera-centos-6-latest
-        networkSecurityGroupResourceGroup: "ClouderaDirectorRG"
-        networkSecurityGroup: "cloudera-director-vnet-nsg"
-        virtualNetworkResourceGroup: "ClouderaDirectorRG"
-        virtualNetwork: "cloudera-director-vnet"
-        subnetName: "cloudera-director-subnet"
-        hostFqdnSuffix: "toby.west"
+        networkSecurityGroupResourceGroup: "REPLACE_ME_RESOURCE_GROUP"
+        networkSecurityGroup: "REPLACE_ME_NETWORK_SECURITY_GROUP"
+        virtualNetworkResourceGroup: "REPLACE_ME_RESOURCE_GROUP"
+        virtualNetwork: "REPLACE_ME_VIRTUAL_NETWORK"
+        subnetName: "REPLACE_ME_SUBNET"
+        hostFqdnSuffix: "REPLACE_ME_FQDN_SUFFIX"
         tags {
-            owner: ${?USER}
+            owner: ${?OWNER}
 	    build: azure.simple.conf
         }
     }
@@ -118,7 +118,7 @@ common-instanceTemplate {
     # Core config fields that are common to all master nodes
     master {
     	availabilitySet: "asmaster"
-        computeResourceGroup: "ClouderaDirectorRG"
+        computeResourceGroup: "REPLACE_ME_RESOURCE_GROUP"
         instanceNamePrefix: "master"
         storageAccountType: "PremiumLRS"
         dataDiskCount: 4
@@ -129,7 +129,7 @@ common-instanceTemplate {
     # Config fields for worker nodes
     worker {
     	availabilitySet: "asworker"
-        computeResourceGroup: "ClouderaDirectorRG"
+        computeResourceGroup: "REPLACE_ME_RESOURCE_GROUP"
         instanceNamePrefix: "worker"
         storageAccountType: "PremiumLRS"
         dataDiskCount: 8
@@ -140,7 +140,7 @@ common-instanceTemplate {
     # Config fields for edge nodes
     edge {
     	availabilitySet: "asedge"
-        computeResourceGroup: "ClouderaDirectorRG"
+        computeResourceGroup: "REPLACE_ME_RESOURCE_GROUP"
         instanceNamePrefix: "edge"
         storageAccountType: "PremiumLRS"
         dataDiskCount: 1
@@ -452,7 +452,7 @@ instances {
         virtualNetworkResourceGroup: ${?common-instanceTemplate.base.virtualNetworkResourceGroup}
         virtualNetwork: ${?common-instanceTemplate.base.virtualNetwork}
         subnetName: ${?common-instanceTemplate.base.subnetName}
-        instanceNamePrefix: cm-1
+        instanceNamePrefix: cloudera-manager
         hostFqdnSuffix: ${?common-instanceTemplate.base.hostFqdnSuffix}
         availabilitySet: ${?common-instanceTemplate.master.availabilitySet}
         publicIP: ${?common-instanceTemplate.master.publicIP}

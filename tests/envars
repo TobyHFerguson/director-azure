@@ -1,10 +1,15 @@
 ADLS_CLIENT_ID="156f2d61-9e8b-4864-81a8-428f03b521da"
 ADLS_URI=adl://cl2.azuredatalakestore.net
 CLIENT_ID="09c00b64-ca87-48a9-a401-56d0215cd661"
-DIRECTOR_USER=toby
-DIRECTOR_PASSWORD=Cloudera1!
+DIRECTOR_PASSWORD=Director5
+DIRECTOR_USER=director5
+FQDN_SUFFIX=cloud.lab
+NETWORK_SECURITY_GROUP=director5-dir-sg
 OWNER=toby
 REGION=westus
+RESOURCE_GROUP=director5
 SSH_KEYFILE=~/.ssh/toby-azure
 SUBSCRIPTION_ID="4ef67e2d-e018-42f1-b93d-fb0a90e3a7bc"
+SUBNET=default
 TENANT_ID="6b91f9fd-cf51-4eb5-bc73-5bd9043d0b62"
+VIRTUAL_NETWORK=directorvnet
