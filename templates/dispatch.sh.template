@@ -48,7 +48,7 @@ SSH_PRIVATE_KEY="~/.ssh/id_rsa"
 #
 
 ENVIRONMENT_NAME="Azure-nonHA"
-DEPLOYMENT_NAME="Cloudera-Manager-Azure"
+DEPLOYMENT_NAME="Cloudera-Manager-on-Azure"
 CLUSTER_NAME="ETL-on-Azure-${RANDOM_TOKEN}"
 
 GATEWAY_GROUP_NAME="masters"

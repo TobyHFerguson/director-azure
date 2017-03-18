@@ -54,6 +54,7 @@ do
     sed -f ${SED_COMMANDS_FILE} $t >$file
 done
 
+
 cat >output/install_jq.sh <<EOF
 (cd /tmp
 curl -O http://stedolan.github.io/jq/download/linux64/jq
@@ -61,5 +62,13 @@ chmod +x ./jq
 sudo mv jq /usr/bin
 )
 EOF
+
+cp ${SSH_KEYFILE:?} output/id_rsa
+
+
+(cd output
+ chmod a+x *.sh
+ zip -m out.zip *
+)
 
     
