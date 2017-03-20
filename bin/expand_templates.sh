@@ -64,7 +64,7 @@ sudo mv jq /usr/bin
 EOF
 
 cp ${SSH_KEYFILE:?} output/id_rsa
-
+chmod 600 output/id_rsa
 
 (cd output
  chmod a+x *.sh
