@@ -85,6 +85,7 @@ provider {
 }
 
 
+
 #
 # SSH credentials to use to connect to the machines
 #
@@ -122,7 +123,7 @@ common-instanceTemplate {
         storageAccountType: "PremiumLRS"
         dataDiskCount: 4
         dataDiskSize: 1023
-        publicIP: No
+        publicIP: Yes
     }
 
     # Config fields for worker nodes
@@ -145,7 +146,7 @@ common-instanceTemplate {
         dataDiskCount: 1
         dataDiskSize: 1023
         # Change this to Yes to allow accessing edge/CM nodes via public IP
-        publicIP: No
+        publicIP: Yes
     }
 }
 
@@ -451,7 +452,7 @@ instances {
         virtualNetworkResourceGroup: ${?common-instanceTemplate.base.virtualNetworkResourceGroup}
         virtualNetwork: ${?common-instanceTemplate.base.virtualNetwork}
         subnetName: ${?common-instanceTemplate.base.subnetName}
-        instanceNamePrefix: cloudera-manager
+        instanceNamePrefix: ${?common-instanceTemplate.master.instanceNamePrefix}
         hostFqdnSuffix: ${?common-instanceTemplate.base.hostFqdnSuffix}
         availabilitySet: ${?common-instanceTemplate.master.availabilitySet}
         publicIP: ${?common-instanceTemplate.master.publicIP}
@@ -516,8 +517,8 @@ cloudera-manager {
         tags {
             application: "Cloudera Manager 5"
         }
-	publicIP: No
-	instanceNamePrefix: cm1
+	publicIP: Yes
+	instanceNamePrefix: "cloudera-manager"
     }
 
    configs {
@@ -612,4 +613,3 @@ cluster {
     instance: ${instances.edge}
     }
 }
-
