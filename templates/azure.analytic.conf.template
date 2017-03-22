@@ -597,7 +597,7 @@ cluster {
     }
 
     workers {
-      count: 2
+      count: 3
 
       instance: ${instances.worker}
 
@@ -606,10 +606,5 @@ cluster {
         YARN: [NODEMANAGER]
 	IMPALA: [IMPALAD]
       }
-    }
-
-    gateway {
-    count:1
-    instance: ${instances.edge}
     }
 }
