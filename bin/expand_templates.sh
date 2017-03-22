@@ -16,9 +16,15 @@ NUMBER=$1
 . envars
 . secrets
 
+TMP_DIR=./tmp
+OUTPUT_DIR=./output
+
+
+trap "rm -rf ${TMP_DIR:?}" EXIT
+
 mkdir -p ./tmp
 mkdir -p ./output
-#trap 'rm -rf ./tmp' EXIT
+
 SSH_PRIVATE_KEY_FILE=./tmp/pk.$$
 SED_COMMANDS_FILE=./tmp/cmds.sed.$$
 SCRIPTPATH=$( cd $(dirname $0) ; pwd -P )
@@ -50,14 +56,18 @@ d
 }
 EOF
 
+EXPAND_DIR=${TMP_DIR:?}/${RESOURCE_GROUP:?}
+mkdir -p ${EXPAND_DIR:?}
+ZIP_FILE=${OUTPUT_DIR:?}/${RESOURCE_GROUP:?}.zip
+
 for t in $(ls ${TEMPLATE_DIR:?}/*.template)
 do
-    file=output/$(basename $t .template)
+    file=${EXPAND_DIR:?}/$(basename $t .template)
     sed -f ${SED_COMMANDS_FILE} $t >$file
 done
 
 
-cat >output/install_jq.sh <<EOF
+cat >${EXPAND_DIR:?}/install_jq.sh <<EOF
 (cd /tmp
 curl -O http://stedolan.github.io/jq/download/linux64/jq
 chmod +x ./jq
@@ -65,12 +75,12 @@ sudo mv jq /usr/bin
 )
 EOF
 
-cp ${SSH_KEYFILE:?} output/id_rsa
-chmod 600 output/id_rsa
+cp ${SSH_KEYFILE:?} ${EXPAND_DIR:?}/id_rsa
+chmod 600 ${EXPAND_DIR:?}/id_rsa
 
-(cd output
- chmod a+x *.sh
- zip -m out.zip adls_query.sql azure.analytic.conf azure.etl.conf dispatch.sh hive_job.sh run_all.sh id_rsa install_jq.sh
-)
+
+chmod a+x ${EXPAND_DIR:?}/*.sh
+zip -m -j ${ZIP_FILE:?} ${EXPAND_DIR:?}/*
+
 
     

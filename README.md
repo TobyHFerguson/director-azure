@@ -34,3 +34,8 @@ Firstly, I wanted to separate out the secrets from the non-secrets, so that I ca
 However, the secrets need to be substituted right into the middle of a multi-line string, and HOCON doesn't support that. So if I'm to separate out the secrets file and then do some kind of substitution it just made sense to be more complete in the substitutions.
 
 However I concede this might be overengineered - maybe I should use the sed script only where absolutely necessary ... I'll file an issue :-)
+
+## Bugs
+This has been written very specifically with the `cloud-lab` in mind and it has grown organically.
+
+Originally the idea was to offer many choices of what could be changed, but it turns out that almost everything is a constant. This hasn't been reflected fully in the code.
