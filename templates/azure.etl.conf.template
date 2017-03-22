@@ -595,7 +595,7 @@ cluster {
     }
 
     workers {
-      count: 2
+      count: 3
 
       instance: ${instances.worker}
 
