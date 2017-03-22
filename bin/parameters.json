@@ -1,0 +1,102 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "adminUsername": {
+            "value": "director"
+        },
+        "adminPassword": {
+            "value": "Director!"
+        },
+        "dbUsername": {
+            "value": "director"
+        },
+        "dbPassword": {
+            "value": "Director!"
+        },
+        "dirUsername": {
+            "value": "director"
+        },
+        "dirPassword": {
+            "value": "Director!"
+        },
+        "subscriptionId": {
+            "value": "4ef67e2d-e018-42f1-b93d-fb0a90e3a7bc"
+        },
+        "tenantId": {
+            "value": "6b91f9fd-cf51-4eb5-bc73-5bd9043d0b62"
+        },
+        "clientId": {
+            "value": "09c00b64-ca87-48a9-a401-56d0215cd661"
+        },
+        "clientSecret": {
+            "value": "jhwf4Gf+rIqWaaU883L0MDEVf1wTUnIWixifQzD+e3k="
+        },
+        "directorSize": {
+            "value": "Standard_DS12_v2"
+        },
+        "masterType": {
+            "value": "Standard_DS14"
+        },
+        "workerType": {
+            "value": "Standard_DS14"
+        },
+        "edgeType": {
+            "value": "Standard_DS14"
+        },
+        "directorEnvironmentName": {
+            "value": "Director_Azure_Deployment"
+        },
+        "dnsNamePrefix": {
+            "value": "director11"
+        },
+        "dnsNameSuffix": {
+            "value": "cloud.lab"
+        },
+        "virtualNetworkName": {
+            "value": "directorvnet"
+        },
+        "vnetNewOrExisting": {
+            "value": "new"
+        },
+        "virtualNetworkRGName": {
+            "value": "director"
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "addressPrefix": {
+            "value": "10.11.0.0/16"
+        },
+        "subnetPrefix": {
+            "value": "10.11.0.0/29"
+        },
+        "directorServerIPAddress": {
+            "value": "10.11.0.4"
+        },
+        "company": {
+            "value": "cloudera"
+        },
+        "emailAddress": {
+            "value": "toby@cloudera.com"
+        },
+        "businessPhone": {
+            "value": "4083869343"
+        },
+        "firstName": {
+            "value": "Toby"
+        },
+        "lastName": {
+            "value": "Ferguson"
+        },
+        "jobRole": {
+            "value": "Administrator"
+        },
+        "jobFunction": {
+            "value": "Analytics / Business Intelligence"
+        },
+        "artifactsBaseUrl": {
+            "value": "https://gallery.azure.com/artifact/20151001/cloudera.director-on-azuredirector-with-env.1.0.4/Artifacts"
+        }
+    }
+}
