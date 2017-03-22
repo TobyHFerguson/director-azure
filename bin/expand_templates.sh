@@ -68,7 +68,7 @@ chmod 600 output/id_rsa
 
 (cd output
  chmod a+x *.sh
- zip -m out.zip *
+ zip -m out.zip adls_query.sql azure.analytic.conf azure.etl.conf dispatch.sh hive_job.sh run_all.sh
 )
 
     

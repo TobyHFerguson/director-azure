@@ -238,7 +238,7 @@ create external table if not exists  customer_address
 stored as parquet
 location 'REPLACE_ME_ADLS_URI/datasets/tpcds/nonpartitioned/parq/scale_1/customer_address';
 
-INSERT OVERWRITE DIRECTORY 'REPLACE_ME_ADLS_URI/REPLACE_ME_DIRECTOR_USER/output/'
+INSERT OVERWRITE DIRECTORY 'REPLACE_ME_ADLS_URI/REPLACE_ME_RESOURCE_GROUP/output/'
 select  dt.d_year 
        ,item.i_brand_id brand_id 
        ,item.i_brand brand
