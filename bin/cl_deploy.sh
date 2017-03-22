@@ -1,48 +1,59 @@
 #!/bin/bash
+NUMBER=${1:?"No resource group number provided"}
+
+. envars
+. secrets
+
 set -euo pipefail
 IFS=$'\n\t'
 
-declare subscriptionId="4ef67e2d-e018-42f1-b93d-fb0a90e3a7bc"
 declare resourceGroupPrefix="director"
-declare deploymentName="cloud-lab"
+declare deploymentName="cloud-lab-${NUMBER:?}"
 declare resourceGroupLocation="westus"
 
+resourceGroupName=${resourceGroupPrefix:?}${NUMBER:?}
 
 #login to azure using your credentials
 azure account show 1> /dev/null
 
 if [ $? != 0 ]; 
 then
-	azure login
+    azure login
 fi
 
 #set the default subscription id
-azure account set $subscriptionId
+azure account set ${SUBSCRIPTION_ID:?}
 
 #switch the mode to azure resource manager
 set +e
 
 azure config list --json | grep -q "arm"
- if [ $?  != 0 ]; 
- then
-	echo "Setting mode to arm.."
-	azure config mode 'arm'
+if [ $?  != 0 ]; 
+then
+    echo "Setting mode to arm.."
+    azure config mode 'arm'
 else
-	echo "Mode is already set to arm"
- fi
+    echo "Mode is already set to arm"
+fi
 
-parametersFilePath="parameters.json"
-templateFilePath="template.json"
+templateFilePath="azure_resource_template.json"
 
 #Check for existing RG
 
 
+PARAM_FILE=/tmp/params.json
 #Start deployment
 echo "Starting deployment..."
-for NUMBER in 14
-do
-    resourceGroupName=${resourceGroupPrefix:?}${NUMBER:?}
-    azure group create --name ${resourceGroupName:?} --location $resourceGroupLocation 1> /dev/null
-    azure group deployment create --name $deploymentName --resource-group ${resourceGroupName:?} --template-file $templateFilePath --verbose --parameters "{ \"number\": {\"value\": \"${NUMBER:?}\" }}"
-done
+cat >/tmp/params.json <<EOF
+{
+"number": { "value": "${NUMBER:?}"},
+"subscriptionId": {"value": "${SUBSCRIPTION_ID:?}"},
+"tenantId": {"value": "${TENANT_ID:?}"},
+"clientId": {"value": "${CLIENT_ID:?}"},
+"clientSecret": {"value": "${CLIENT_SECRET:?}"}
+}
+EOF
+
+azure group create --name ${resourceGroupName:?} --location $resourceGroupLocation 1> /dev/null
+azure group deployment create --name $deploymentName --resource-group ${resourceGroupName:?} --template-file $templateFilePath --verbose --parameters-file ${PARAM_FILE:?}
 

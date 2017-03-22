@@ -2,7 +2,11 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
     "contentVersion": "1.0.0.0",
     "parameters": {
-	"number": { "type": "String" }
+	"number": { "type": "String" },
+	"subscriptionId": {"type": "String"},
+	"tenantId": {"type": "String"},
+	"clientId": {"type": "String"},
+	"clientSecret": {"type": "String"}
     },
     "variables": {
         "version": {
@@ -17,10 +21,10 @@
 	"dbPassword": "[variables('adminPassword')]",
 	"dirUsername": "[variables('adminUserName')]",
 	"dirPassword": "[variables('adminPassword')]",
-	"subscriptionId": "4ef67e2d-e018-42f1-b93d-fb0a90e3a7bc",
-	"tenantId": "6b91f9fd-cf51-4eb5-bc73-5bd9043d0b62",
-	"clientId": "09c00b64-ca87-48a9-a401-56d0215cd661",
-	"clientSecret": "jhwf4Gf+rIqWaaU883L0MDEVf1wTUnIWixifQzD+e3k=",
+	"subscriptionId": "[parameters('subscriptionId')]",
+	"tenantId": "[parameters('tenantId')]",
+	"clientId": "[parameters('clientId')]",
+	"clientSecret": "[parameters('clientSecret')]",
         "directorSize": "Standard_DS12_v2",
         "masterType": "Standard_DS14",
         "workerType": "Standard_DS14",
