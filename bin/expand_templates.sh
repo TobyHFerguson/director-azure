@@ -11,12 +11,14 @@ EOF
 exit 1
 }
 
+NUMBER=$1
+
 . envars
 . secrets
 
 mkdir -p ./tmp
 mkdir -p ./output
-trap 'rm -rf ./tmp' EXIT
+#trap 'rm -rf ./tmp' EXIT
 SSH_PRIVATE_KEY_FILE=./tmp/pk.$$
 SED_COMMANDS_FILE=./tmp/cmds.sed.$$
 SCRIPTPATH=$( cd $(dirname $0) ; pwd -P )
@@ -68,7 +70,7 @@ chmod 600 output/id_rsa
 
 (cd output
  chmod a+x *.sh
- zip -m out.zip adls_query.sql azure.analytic.conf azure.etl.conf dispatch.sh hive_job.sh run_all.sh
+ zip -m out.zip adls_query.sql azure.analytic.conf azure.etl.conf dispatch.sh hive_job.sh run_all.sh id_rsa install_jq.sh
 )
 
     
