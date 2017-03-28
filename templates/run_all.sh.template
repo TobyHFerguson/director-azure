@@ -2,4 +2,4 @@
 # Copyright (c) 2016 Cloudera, Inc. All rights reserved.
 #
 
-./dispatch.sh -f=azure.etl.conf -t hive_job.sh adls_query.sql | tee output.file
+./dispatch.sh -f=azure.etl.conf  -k=true -t hive_job.sh adls_query.sql | tee output.file

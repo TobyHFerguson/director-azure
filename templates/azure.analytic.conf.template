@@ -594,6 +594,14 @@ cluster {
 	IMPALA: [CATALOGSERVER, STATESTORE]
 	HUE: [HUE_SERVER]
       }
+      configs {
+          HUE {
+	      HUE_SERVER {
+	          hue_server_hue_safety_valve: """[desktop]
+		  allowed_hosts=*"""
+	      }
+	  }
+      }
     }
 
     workers {
