@@ -641,23 +641,22 @@ def main():
     cm = api.get_cloudera_manager()
     config = cm.get_config(view='summary')
     parcel_urls = config.get("REMOTE_PARCEL_REPO_URLS","").split(",")
-    print "Adding Anaconda parcel repository " + ",".join(parcel_urls)
+    print "Adding "+parcel_name+" repository " + ",".join(parcel_urls)
     if anaconda_repo in parcel_urls:
         # already there, skip
-        print "Anaconda repo url already included"
+        print parcel_name+" repo url already included"
     else:
         parcel_urls.append(anaconda_repo)
         config["REMOTE_PARCEL_REPO_URLS"] = ",".join(parcel_urls)
         cm.update_config(config)
         # wait to make sure parcels are refreshed
         time.sleep(10)
-        print "Added Anaconda repository URL: "+anaconda_repo
+        print "Added "+parcel_name+" repository URL: "+anaconda_repo
 
     print "Parcels available:"
     print ",".join(map(str,cluster.get_all_parcels()))
 
-    # Download Anaconda parcel
-    print "Downloading parcel"
+    print "Downloading parcel "+parcel_name
     parcel = cluster.get_parcel(parcel_name, anaconda_version)
     parcel.start_download()
     while True:
@@ -668,9 +667,9 @@ def main():
             raise Exception(str(parcel.state.errors))
         print "Downloading  progress: %s of %s" % (parcel.state.progress, parcel.state.totalProgress)
         time.sleep(2)
-    print "Downloaded"
+    print "Downloaded "+parcel_name
 
-    print "Distributing"
+    print "Distributing "+parcel_name
     parcel.start_distribution()
     while True:
         parcel = cluster.get_parcel(parcel_name, anaconda_version)
@@ -680,9 +679,9 @@ def main():
             raise Exception(str(parcel.state.errors))
         print "Distributing  progress: %s of %s" % (parcel.state.progress, parcel.state.totalProgress)
         time.sleep(5)
-    print "Distributed"
+    print "Distributed "+parcel_name
 
-    print "Activating Anaconda"
+    print "Activating "+parcel_name
     parcel.activate()
     while True:
         parcel = cluster.get_parcel(parcel_name, anaconda_version)
