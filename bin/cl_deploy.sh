@@ -46,7 +46,7 @@ trap "rm -f ${PARAM_FILE:?}" EXIT
 
 #Start deployment
 echo "Starting deployment..."
-cat >/tmp/params.json <<EOF
+cat >${PARAM_FILE:?} <<EOF
 {
 "number": { "value": "${NUMBER:?}"},
 "subscriptionId": {"value": "${SUBSCRIPTION_ID:?}"},
