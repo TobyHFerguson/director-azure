@@ -41,7 +41,9 @@ templateFilePath="azure_resource_template.json"
 #Check for existing RG
 
 
-PARAM_FILE=/tmp/params.json
+PARAM_FILE=/tmp/params.json.$$
+trap "rm -f $${PARAM_FILE:?}" EXIT
+
 #Start deployment
 echo "Starting deployment..."
 cat >/tmp/params.json <<EOF
