@@ -123,7 +123,7 @@ common-instanceTemplate {
         storageAccountType: "PremiumLRS"
         dataDiskCount: 4
         dataDiskSize: 1023
-        publicIP: Yes
+        publicIP: No
     }
 
     # Config fields for worker nodes
@@ -146,7 +146,7 @@ common-instanceTemplate {
         dataDiskCount: 1
         dataDiskSize: 1023
         # Change this to Yes to allow accessing edge/CM nodes via public IP
-        publicIP: Yes
+        publicIP: No
     }
 }
 
