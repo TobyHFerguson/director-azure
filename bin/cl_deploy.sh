@@ -42,7 +42,7 @@ templateFilePath="azure_resource_template.json"
 
 
 PARAM_FILE=/tmp/params.json.$$
-trap "rm -f $${PARAM_FILE:?}" EXIT
+trap "rm -f ${PARAM_FILE:?}" EXIT
 
 #Start deployment
 echo "Starting deployment..."
