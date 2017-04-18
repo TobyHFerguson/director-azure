@@ -1,4 +1,7 @@
-**/tmp/**
-tmp/**
+**/tmp
+
 secrets
-tests/output
+**/output
+/director*
+/nohup*
+**/tests
