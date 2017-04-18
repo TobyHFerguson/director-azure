@@ -120,7 +120,7 @@ common-instanceTemplate {
     	availabilitySet: "asmaster"
         computeResourceGroup: "REPLACE_ME_RESOURCE_GROUP"
         instanceNamePrefix: "master"
-        storageAccountType: "PremiumLRS"
+        storageAccountType: "StandardLRS"
         dataDiskCount: 4
         dataDiskSize: 1023
         publicIP: Yes
@@ -131,7 +131,7 @@ common-instanceTemplate {
     	availabilitySet: "asworker"
         computeResourceGroup: "REPLACE_ME_RESOURCE_GROUP"
         instanceNamePrefix: "worker"
-        storageAccountType: "PremiumLRS"
+        storageAccountType: "StandardLRS"
         dataDiskCount: 8
         dataDiskSize: 1023
         publicIP: No
@@ -142,7 +142,7 @@ common-instanceTemplate {
     	availabilitySet: "asedge"
         computeResourceGroup: "REPLACE_ME_RESOURCE_GROUP"
         instanceNamePrefix: "edge"
-        storageAccountType: "PremiumLRS"
+        storageAccountType: "StandardLRS"
         dataDiskCount: 1
         dataDiskSize: 1023
         # Change this to Yes to allow accessing edge/CM nodes via public IP
