@@ -53,7 +53,7 @@
         "networkRestartUri": "[concat(variables('scriptsUri'), '/network-restart-', variables('vnetNewOrExisting'), '-vnet.json')]",
         "storageAccount": {
             "prefix": "[concat(uniquestring(resourceGroup().id),'storage')]",
-            "type": "Premium_LRS"
+            "type": "Standard_LRS"
         },
         "clusterParameters": {
             "envName": "[variables('directorEnvironmentName')]",
